@@ -27,4 +27,12 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
 
+    # register the database command
+    from . import db
+    db.init_app(app)
+
+    # register the blueprint
+    from . import auth
+    app.register_blueprint(auth.bp)
+
     return app
